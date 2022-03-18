@@ -215,8 +215,18 @@ function wipe() {
     alert("That was a close one!")
   }
 }
+function changelog(){
+  document.getElementById("changelog").showModal()
+}
+function infobtn(element){
+  changelog()
+  element.classList.add("rotateanim")
+  setTimeout(() => {
+    element.classList.remove("rotateanim")
+  }, 500);
+}
 // Show the changelog popup
-document.getElementById("changelog").showModal()
+changelog()
 var clbbdb = false // Stands for changelog big banana debounce
 $("#changelogbigbanana").click(function(){
   if (clbbdb == false) {

@@ -77,8 +77,25 @@
       transform: rotate(360deg);
     }
 }
+@keyframes rotate-center-2 {
+  0% {
+    transform: rotate(0);
+  }
+  80%{
+    transform: rotate(380deg);
+  }
+  90% {
+    transform: rotate(350deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
 .rotateanim{
     animation: rotate-center 0.6s ease-in-out both;
+}
+.rotateanim2{
+  animation: rotate-center 0.6s ease-in-out both;
 }
 @keyframes jello-horizontal {
     0% {

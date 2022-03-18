@@ -10,7 +10,6 @@
     <title>Banana Simulator</title>
     <link rel="icon" href="assets/banana.png">
     <link rel="stylesheet" href="css.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDVLYLPGDW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -46,6 +45,7 @@
           <ul>
             <li>Added Changelog (duh)</li>
           </ul>
+          <a href="https://github.com/pikapower9080/banana-simulator" target="_blank">Full changelog (github)</a>
         </p>
         </div>
         <img src="assets/banana_large.png" width="150" id="changelogbigbanana" class="shakeanim"><br><br>
@@ -57,7 +57,7 @@
       <img src="assets/banana_large.png" class="bigbanana" onclick="bananaclick()">
     </div>
     <div id="icons">
-      <i class="fas fa-info-circle" style="color: white; position: absolute; bottom: 5px;" onclick="document.getElementById('changelog').showModal()"></i>
+      <img src="assets/info.svg" class="infoicon" onclick="infobtn(this)">
     </div>
   <div id="shop" onload="updatecounts()">
     <h1>Shop</h1>
