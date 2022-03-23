@@ -3,6 +3,9 @@
   I don't want to rewrite the whole thing just so that I can make this more efficent so deal with it.
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
+
+const version = "0.5.1"
+
 var points = 0
 let bpc = 1
 var bulidings = {
@@ -76,26 +79,12 @@ function calcbpc(){
   return newbpc
 }
 
+// I wanted to store bananas in localstorage and not cookies and so i just changed these functions because i was too lazy to update all the code.
 function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/games/banana";
+  localStorage.setItem(cname, cvalue)
 }
 function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+  return localStorage.getItem(cname)
 }
 if (getCookie("save") == null) {
   setCookie("save", 0, 30)
@@ -168,7 +157,10 @@ function bananaclick() {
       points ++
     }
     // document.getElementById("count").innerHTML = `Bananas: ${points}`
-    document.getElementById('clicksound').play()
+    // document.getElementById('clicksound').play()
+    const clicksound = new Audio("assets/click.wav")
+    clicksound.play()
+    
     updatecount()
 }
 function addtobpc(amount) {
@@ -207,7 +199,7 @@ function wipe() {
       points = 0
       bpc = 1
       setCookie("save", 0, 30)
-      window.location.href = "https://pikapower9080.github.io/games/banana/"
+      window.location.href = "https://pikapower9080.github.io/banana-simulator"
     } else {
       alert("That was a close one!")
     }
@@ -216,17 +208,27 @@ function wipe() {
   }
 }
 function changelog(){
+  document.getElementById("version").innerHTML = version
   document.getElementById("changelog").showModal()
 }
 function infobtn(element){
   changelog()
-  element.classList.add("rotateanim")
+  element.classList.add("rotateanim2")
   setTimeout(() => {
-    element.classList.remove("rotateanim")
-  }, 500);
+    element.classList.remove("rotateanim2")
+  }, 1000);
 }
+function hidechangelogtilupdate(){
+  localStorage.setItem("lastversion", version)
+  document.getElementById("changelog").close()
+}
+
 // Show the changelog popup
-changelog()
+if (localStorage.getItem("lastversion") && localStorage.getItem("lastversion") == version) {
+  console.log("Not showing changelog since it's been hidden until the next update.")
+} else {
+  changelog()
+}
 var clbbdb = false // Stands for changelog big banana debounce
 $("#changelogbigbanana").click(function(){
   if (clbbdb == false) {
