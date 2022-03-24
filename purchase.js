@@ -1,5 +1,6 @@
 function purchase(item) {
-    document.getElementById('clicksound').play()
+    const clicksound = new Audio("assets/click.wav")
+    clicksound.play()
     logverbose("Purchacing " + item)
     switch (item) {
       case 'bananacrate':

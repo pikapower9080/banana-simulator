@@ -4,7 +4,7 @@
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
 
-const version = "0.5.1"
+const version = "0.5.2"
 
 var points = 0
 let bpc = 1
