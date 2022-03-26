@@ -191,22 +191,6 @@ function finishstoragetest() {
     alert(localStorage.getItem("localstorage_test"))
   }
 }
-function wipe() {
-  var wipeareyousure = confirm("Are you SURE?? THIS CAN NOT BE UNDONE AND WILL ERASE ALL OF YOUR PROGRESS!!!!!")
-  if (wipeareyousure == true) {
-    var totallyextraverysure = confirm("Ok this is your last warning. Don't say I didn't warn you.")
-    if (totallyextraverysure == true) {
-      points = 0
-      bpc = 1
-      setCookie("save", 0, 30)
-      window.location.href = "https://pikapower9080.github.io/banana-simulator"
-    } else {
-      alert("That was a close one!")
-    }
-  } else {
-    alert("That was a close one!")
-  }
-}
 function changelog(){
   document.getElementById("version").innerHTML = version
   document.getElementById("changelog").showModal()

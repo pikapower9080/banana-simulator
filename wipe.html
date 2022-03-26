@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wipe your Banana Simulator Save</title>
+</head>
+<body>
+    <h2>Wipe your save</h2>
+    <p>This will erase <u>everything</u>!</p>
+    <p>To confirm, please type the following into the box below:</p>
+    <p id="wordstotype"></p>
+    <form id="confirmform">
+        <input type="text" placeholder="Type here..." id="confirmtext">
+        <input type="Submit" value="Wipe">
+    </form>
+    <script src="usernames.js"></script>
+    <script>
+        var buildingSaves = ["monkeys", "bananatrees", "bananacrate", "magikgrow", "forest", "machine", "box", "wizard"]
+        var yieldSaves = ["bananacrate", "bananatree", "monkey", "magikgrow", "forest", "machine", "box", "wizard"]
+        var otherSaves = ["username", "p_upgrades", "save"]
+        function wipe() {
+            function tryToRemoveStorage(key){
+                try {
+                    localStorage.removeItem(key)
+                } catch (error) {
+                    console.error(error)
+                    console.warn("Could not wipe a value!")
+                }
+            }
+            for (let i = 0; i < buildingSaves.length; i++) {
+                tryToRemoveStorage("buildings_" + buildingSaves[i])
+            }
+            for (let i = 0; i < yieldSaves.length; i++) {
+                tryToRemoveStorage("yield_" + yieldSaves[i])
+            }
+            for (let i = 0; i < otherSaves.length; i++) {
+                tryToRemoveStorage(otherSaves[i])
+            }
+            window.location.href = "./"
+        }
+        var wordsoutput = document.getElementById("wordstotype")
+        wordsoutput.innerHTML = ""
+        var texttotype = ""
+        for (let index = 0; index < 4; index++) {
+            texttotype += ends[Math.floor(Math.random() * ends.length)] + " "
+        }
+        texttotype = texttotype.trim()
+        wordsoutput.innerHTML = texttotype
+        var confirmform = document.getElementById("confirmform")
+        confirmform.addEventListener("submit", function(event){
+            event.preventDefault()
+            var texttyped = document.getElementById("confirmtext").value
+            texttyped = texttyped.trim()
+            texttyped = texttyped.toLowerCase()
+            console.log(texttyped)
+            console.log(texttotype.toLowerCase())
+            if (texttyped == texttotype.toLowerCase()) {
+                wipe()
+            }
+        })
+    </script>
+</body>
+</html>

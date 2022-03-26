@@ -22,7 +22,6 @@ var ends = [
     "Kid",
     "Imposter",
     "Friend",
-    "Jellow",
     "Person",
     "Teen",
     "Animal",
