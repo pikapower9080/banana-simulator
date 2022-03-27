@@ -51,6 +51,7 @@ var buildings_forest = checkstorage("buildings_forest", 0)
 var buildings_machine = checkstorage("buildings_machine", 0)
 var buildings_box = checkstorage("buildings_box", 0)
 var buildings_wizard = checkstorage("buildings_wizard", 0)
+var buildings_twitter = checkstorage("buildings_twitter", 0)
 var price_monkeys = calcprice(7500, buildings_monkeys)
 var price_bananatrees = calcprice(1000, buildings_bananatrees)
 var price_bananacrate = calcprice(100, buildings_bananacrate)
@@ -59,6 +60,7 @@ var price_forest = calcprice(50000, buildings_forest)
 var price_machine = calcprice(100000, buildings_machine)
 var price_box = calcprice(200000, buildings_box)
 var price_wizard = calcprice(350000, buildings_wizard)
+var price_twitter = calcprice(500000, buildings_twitter)
 var yield_bananacrate = checkstorage("yield_bananacrate", 1)
 var yield_bananatree = checkstorage("yield_bananatree", 2)
 var yield_monkey = checkstorage("yield_monkey", 10)
@@ -67,11 +69,16 @@ var yield_forest = checkstorage("yield_forest", 50)
 var yield_machine = checkstorage("yield_machine", 75)
 var yield_box = checkstorage("yield_box", 125)
 var yield_wizard = checkstorage("yield_wizard", 250)
+var yield_twitter = checkstorage("yield_twitter", 400)
+
+var settingselements = {}
+settingselements.togglesound = document.getElementById("soundtoggle")
+settingselements.allowselect = document.getElementById("allowselect")
 
 function calcbpc(){
   let newbpc = 1
-  var buildingsl = [buildings_bananacrate, buildings_bananatrees, buildings_monkeys, buildings_magikgrow, buildings_forest, buildings_machine, buildings_box, buildings_wizard]
-  var yieldl = [yield_bananacrate, yield_bananatree, yield_monkey, yield_magikgrow, yield_forest, yield_machine, yield_box, yield_wizard]
+  var buildingsl = [buildings_bananacrate, buildings_bananatrees, buildings_monkeys, buildings_magikgrow, buildings_forest, buildings_machine, buildings_box, buildings_wizard, buildings_twitter]
+  var yieldl = [yield_bananacrate, yield_bananatree, yield_monkey, yield_magikgrow, yield_forest, yield_machine, yield_box, yield_wizard, yield_twitter]
   for (let index = 0; index < buildingsl.length; index++) {
     const element = yieldl[index];
     newbpc += buildingsl[index] * yieldl[index]
@@ -112,6 +119,7 @@ function updatecount() {
   localStorage.setItem("buildings_machine", buildings_machine)
   localStorage.setItem("buildings_box", buildings_box)
   localStorage.setItem("buildings_wizard", buildings_wizard)
+  localStorage.setItem("buildings_twitter", buildings_twitter)
 }
 function updatepricetags() {
     document.getElementById("bananacrateprice").innerHTML = commas(price_bananacrate) + " bananas"
@@ -122,6 +130,7 @@ function updatepricetags() {
     document.getElementById("machineprice").innerHTML = commas(price_machine) + " bananas"
     document.getElementById("boxprice").innerHTML = commas(price_box) + " bananas"
     document.getElementById("wizardprice").innerHTML = commas(price_wizard) + " bananas"
+    document.getElementById("twitterprice").innerHTML = commas(price_twitter) + " bananas"
 }
 function updatebulidingcounts() {
   document.getElementById('cratecount').innerHTML = " x" + buildings_bananacrate
@@ -132,6 +141,7 @@ function updatebulidingcounts() {
   document.getElementById('machinecount').innerHTML = " x" + buildings_machine
   document.getElementById('boxcount').innerHTML = " x" + buildings_box
   document.getElementById('wizardcount').innerHTML = " x" + buildings_wizard
+  document.getElementById('twittercount').innerHTML = " x" + buildings_twitter
   document.getElementById('yield_bananacrate').innerHTML = `+${yield_bananacrate} Banana(s) per click`
   document.getElementById('yield_bananatree').innerHTML = `+${yield_bananatree} Bananas per click`
   document.getElementById('yield_monkey').innerHTML = `+${yield_monkey} Bananas per click`
@@ -140,6 +150,7 @@ function updatebulidingcounts() {
   document.getElementById('yield_machine').innerHTML = `+${yield_machine} Bananas per click`
   document.getElementById('yield_box').innerHTML = `+${yield_machine} Bananas per click`
   document.getElementById('yield_wizard').innerHTML = `+${yield_wizard} Bananas per click`
+  document.getElementById('yield_twitter').innerHTML = `+${yield_twitter} Bananas per click`
 }
 function saveyields(){
   localStorage.setItem("yield_bananacrate", yield_bananacrate)
@@ -150,17 +161,16 @@ function saveyields(){
   localStorage.setItem("yield_machine", yield_machine)
   localStorage.setItem("yield_box", yield_box)
   localStorage.setItem("yield_wizard", yield_wizard)
+  localStorage.setItem("yield_twitter", yield_twitter)
 }
 function bananaclick() {
-    // console.log("Click!")
     for (let index = 0; index < bpc; index++) {
       points ++
     }
-    // document.getElementById("count").innerHTML = `Bananas: ${points}`
-    // document.getElementById('clicksound').play()
-    const clicksound = new Audio("assets/click.wav")
-    clicksound.play()
-    
+    if (settingselements.togglesound.checked) {
+      const clicksound = new Audio("assets/click.wav")
+      clicksound.play() 
+    }
     updatecount()
 }
 function addtobpc(amount) {
@@ -191,6 +201,7 @@ function finishstoragetest() {
     alert(localStorage.getItem("localstorage_test"))
   }
 }
+
 function changelog(){
   document.getElementById("version").innerHTML = version
   document.getElementById("changelog").showModal()
@@ -202,11 +213,22 @@ function infobtn(element){
     element.classList.remove("rotateanim2")
   }, 1000);
 }
+var settingsdb = false
+function opensettings(element){
+  if (settingsdb == false) {
+    settingsdb = true
+    element.classList.add("rotateanim")
+    document.getElementById("settingsdialog").showModal()
+    setTimeout(() => {
+      element.classList.remove("rotateanim")
+      settingsdb = false
+    }, 1000);
+  }
+}
 function hidechangelogtilupdate(){
   localStorage.setItem("lastversion", version)
   document.getElementById("changelog").close()
 }
-
 // Show the changelog popup
 if (localStorage.getItem("lastversion") && localStorage.getItem("lastversion") == version) {
   console.log("Not showing changelog since it's been hidden until the next update.")
@@ -226,6 +248,14 @@ $("#changelogbigbanana").click(function(){
     }, 500);
   }
 })
+settingselements.allowselect.addEventListener("input", function(event){
+  if (settingselements.allowselect.checked == true) {
+    document.getElementsByTagName("html")[0].style.setProperty("--user-select-rule", "all")
+  } else {
+    document.getElementsByTagName("html")[0].style.setProperty("--user-select-rule", "none")
+  }
+})
+
 function onupdate(){
   updatepricetags()
   updatebulidingcounts()

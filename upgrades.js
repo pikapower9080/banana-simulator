@@ -63,6 +63,8 @@ var bettermagikgrow = newupgrade("Improved Fertilizer", "50,000 Bananas | Higher
 var betterforests = newupgrade('"Responsable Foresting"', "250,000 Bananas | I'm sure you're telling the truth on your packaging... because you wouldn't lie, would you? | x2 Forest Production", 250000, "assets/bananaforest.png", "yield_forest = yield_forest * 2")
 var bettermachine = newupgrade("Assembly Line", "500,000 Bananas | Just like the old days! | x2 Machine Production", 500000, "assets/bananamachine.png", "yield_machine = yield_machine * 2")
 var fiverrpro = newupgrade("Fiverr Pro", "1,050,000 Bananas | A better wizard with better skills | x2 Wizard Production", 1050000, "assets/wizard.png", "yield_wizard = yield_wizard * 2")
+var socialmanager = newupgrade("Social Media Manager", "2,000,000 Bananas | A social media manager with real skills to manage your twitter account | x2 Twitter Account Production", 2000000, "assets/twitter-pixel.png", "yield_twitter = yield_twitter * 2")
+var darkmode = newupgrade("Twitter Dark Mode", "3,500,000 Bananas | A dark theme for twitter so that your social media managers can work into the night 🌝 | x1.5 Twitter Account Production", 3500000, "assets/twitter-pixel.png", "yield_twitter = yield_twitter * 1.5")
 
 // var universe = newupgrade("Universal Expansion", "1,000,000 Bananas | Your banana brand is now not just worldwide, but loved across the galaxy! You are now in control of the FIRST GALACTIC BANANA EMPIRE!", 1000000, "assets/planet.png") // This one is coming soon ;)
 

@@ -31,6 +31,14 @@
         <div id="changelog_content">
         <h3><a>Changelog:</a></h3>
         <p>
+          3/27/22
+          <ul>
+            <li>Added the twitter account</li>
+            <li>Added the social media manager and twitter dark mode upgrades</li>
+            <li>Tweaks and bug fixes</li>
+            <li>Added the settings menu and moved the wipe link to it.</li>
+            <li>Tweaked golden bananas and plantains</li>
+          </ul>
           3/26/22
           <ul>
             <li>Added the Fiverr Pro upgrade for the wizard.</li>
@@ -66,8 +74,17 @@
         </div>
         <p>Bugs? Feature requests? <a href="https://github.com/pikapower9080/banana-simulator/issues/new/choose" target="_blank">open an issue</a>!</p>
         <img src="assets/banana_large.png" width="130" id="changelogbigbanana" class="shakeanim"><br><br>
-        <a onclick="hidechangelogtilupdate()" href="#" style="color: #0000EE;">Don't show until next update</a> &#183; <a href="wipe.html" style="color: #0000EE;">Wipe your save</a><br>
+        <a onclick="hidechangelogtilupdate()" href="#" style="color: #0000EE;">Don't show until next update</a><br>
         <!-- <button onclick="document.getElementById('changelog').close()">OK</button> -->
+      </dialog>
+      <dialog id="settingsdialog">
+        <div class="changelog-closex"><a onclick="document.getElementById('settingsdialog').close()"  href="#" style="color: white; text-decoration: none;">x</a></div>
+        <h2 class="settingstitle">Settings</h2>
+        <hr>
+        <input type="checkbox" id="soundtoggle" checked><label for="soundtoggle"> Sound Effects</label><br>
+        <input type="checkbox" id="allowselect"><label for="allowselect"> Allow selecting the big banana + more</label>
+        <br><br>
+        <a href="wipe.html" style="color: #0000EE;">Wipe your save</a>
       </dialog>
       <h3 id="yourname" onclick="resetusername()">Your Banana Stand</h3>
       <h1 id="bananacount"><img src="assets/banana.png"> <span id="count">Bananas: 0</span> <img src="assets/banana.png"></h1>
@@ -76,6 +93,7 @@
     </div>
     <div id="icons">
       <img src="assets/info.svg" class="infoicon" onclick="infobtn(this)">
+      <img src="assets/gear.svg" class="settingsicon" onclick="opensettings(this)">
     </div>
     <div id="shinies">
       <div id="shinytemplate" style="display: none;" onclick="shinyclick(this)">
@@ -160,6 +178,15 @@
         <label>Freelance Wizard</label><span class="shopcardcount" id="wizardcount"> x0</span>
         <h4>A self proclaimed wizard you found on Fiverr. He says he can make bananas out of thin air; I hope so because this is where the budget went.</h4>
         <p id="yield_wizard"><b>+250 Bananas per click</b></p>
+        <hr>
+      </div>
+      <div class="shopcard" id="shop_twitter" onclick="purchase('twitter')">
+        <hr>
+        <img src="assets/twitter-pixel.png" class="shopicon">
+        <p class="shopcardprice" id="twitterprice">500,000 Bananas</p>
+        <label>Twitter Account</label><span class="shopcardcount" id="twittercount"> x0</span>
+        <h4>A ncie twitter account to self promote!</h4>
+        <p id="yield_twitter"><b>+400 Bananas per click</b></p>
         <hr>
       </div>
       <br><h2>Upgrades</h2><hr><br>

@@ -1,7 +1,7 @@
 // Controls the spawn of the golden banana currently (More stuff later?)
 
 var shinies = {}
-shinies.globalspawndelay = 30000
+shinies.globalspawndelay = 60000
 shinies.goldenbanana = {
     id: "goldenbanana",
     image: "assets/golden_banana.png",
@@ -58,10 +58,7 @@ function shinyclick(shinyelement){
     var shinytype = shinyelement.getElementsByTagName("div")[0].classList[1].replace("shiny_", "")
     console.debug(shinytype)
     if (shinytype == "goldenbanana") {
-        var yieldtogive = Math.floor(Math.random() * calcbpc() * 10)
-        if (yieldtogive < calcbpc() * 2) {
-            yieldtogive = calcbpc() * 2
-        }
+        var yieldtogive = calcbpc() * 60
         shinytext.innerHTML = shinytext.innerHTML.replace("%bananas%", commas(String(yieldtogive)))
         shinytext.innerHTML = shinytext.innerHTML.replace("%op%", "+")
         shinytext.innerHTML = shinytext.innerHTML.replace("%type%", "Golden Banana!")
@@ -70,9 +67,9 @@ function shinyclick(shinyelement){
             shinyelement.remove()
         }, 1500);
     } else if(shinytype == "plantain") {
-        var yieldtotake = Math.floor(Math.random() * calcbpc() * 10)
-        if (yieldtotake < calcbpc()) {
-            yieldtotake = calcbpc()
+        var yieldtotake = calcbpc() * 25
+        if (yieldtotake < 1) {
+            yieldtotake = 0
         }
         shinytext.innerHTML = shinytext.innerHTML.replace("%bananas%", commas(String(yieldtotake)))
         shinytext.innerHTML = shinytext.innerHTML.replace("%op%", "-")

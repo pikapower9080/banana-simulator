@@ -1,6 +1,8 @@
 function purchase(item) {
-    const clicksound = new Audio("assets/click.wav")
-    clicksound.play()
+    if (settingselements.togglesound.checked) {
+      const clicksound = new Audio("assets/click.wav")
+      clicksound.play()
+    }
     logverbose("Purchacing " + item)
     switch (item) {
       case 'bananacrate':
@@ -31,7 +33,7 @@ function purchase(item) {
           }
        break;
        case 'magikgrow':
-        if (points >= price_monkeys) {     
+        if (points >= price_magikgrow) {     
             buildings_magikgrow ++
             points -= price_magikgrow
             // addtobpc(20)
@@ -71,6 +73,14 @@ function purchase(item) {
             buildings_wizard ++
             points -= price_wizard
             price_wizard = Math.floor(price_wizard * 1.2)
+            updatepricetags(); updatebulidingcounts()
+          }
+        break;
+        case 'twitter':
+          if (points >= price_twitter) {
+            buildings_twitter ++
+            points -= price_twitter
+            price_twitter = Math.floor(price_twitter * 1.2)
             updatepricetags(); updatebulidingcounts()
           }
         break;
