@@ -1,4 +1,4 @@
-// Controls the spawn of the golden banana currently (More stuff later?)
+// Controls the spawn of the golden banana + plantain currently (More stuff later?)
 
 var shinies = {}
 shinies.globalspawndelay = 60000
@@ -51,7 +51,10 @@ class Shiny {
         }, shinies.goldenbanana.lifetime * 1000);
     }
 }
+var shinydb = false
 function shinyclick(shinyelement){
+    if (shinydb == true) {return}
+    shinydb = true
     var shinytext = shinyelement.getElementsByClassName("shinytext")[0]
     shinytext.setAttribute("style", shinyelement.getElementsByClassName("shiny")[0].getAttribute("style"))
     shinytext.classList.add("fadein")
@@ -65,6 +68,7 @@ function shinyclick(shinyelement){
         points = parseInt(points) + parseInt(yieldtogive)
         setTimeout(() => {
             shinyelement.remove()
+            shinydb = false
         }, 1500);
     } else if(shinytype == "plantain") {
         var yieldtotake = calcbpc() * 25
@@ -77,6 +81,7 @@ function shinyclick(shinyelement){
         points = parseInt(points) - parseInt(yieldtotake)
         setTimeout(() => {
             shinyelement.remove()
+            shinydb = false
         }, 1500);
     } else {
         shinyelement.remove()
