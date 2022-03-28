@@ -256,6 +256,39 @@ settingselements.allowselect.addEventListener("input", function(event){
   }
 })
 
+// If you've made it this far: Here's how to activate cheats. Click the settings heading text 5-6 times and booh yeah!
+var stitle = document.getElementById("settingstitle")
+var stitleclicks = 0
+$("#settingstitle").click(function(){
+  if (stitleclicks >= 5) {
+    stitle.innerHTML = "Cheats menu :o"
+    $("#cheatsmenu").show()
+  } else {
+    stitleclicks ++
+  }
+})
+var cheats = {}
+cheats.addBananas = function(amount){
+  for (let i = 0; i < amount; i++) {
+    points ++
+  }
+  updatecount()
+}
+cheats.resetUpgrades = function(){
+  localStorage.setItem("p_upgrades", "")
+}
+cheats.infinite = function(){
+  points = 9999999999999999999999999
+  updatecount()
+}
+cheats.multiplyby = function(amount){
+  points = (points*1) * amount
+}
+cheats.clearBananas = function(){
+  points = 0
+  updatecount()
+}
+
 function onupdate(){
   updatepricetags()
   updatebulidingcounts()

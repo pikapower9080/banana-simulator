@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="Keywords" content="thereal_pika, pikapower9080">
     <meta name="author" content="pikapower9080">
-    <title>Banana Simulator</title>
+    <title id="title">Banana Simulator</title>
     <link rel="icon" href="assets/banana.png">
     <link rel="stylesheet" href="css.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDVLYLPGDW"></script>
@@ -84,10 +84,20 @@
       </dialog>
       <dialog id="settingsdialog">
         <div class="changelog-closex"><a onclick="document.getElementById('settingsdialog').close()"  href="#" style="color: white; text-decoration: none;">x</a></div>
-        <h2 class="settingstitle">Settings</h2>
+        <h2 class="settingstitle" id="settingstitle">Settings</h2>
         <hr>
         <input type="checkbox" id="soundtoggle" checked><label for="soundtoggle"> Sound Effects</label><br>
         <input type="checkbox" id="allowselect"><label for="allowselect"> Allow selecting the big banana + more</label>
+        <!-- Cheats??!?!?!?!??!?!?! -->
+        <div id="cheatsmenu" style="display: none;">
+          <hr>
+          <button id="cheats-addbananas-1000" onclick="cheats.addBananas(1000)">+1000 Bananas</button>
+          <button id="cheats-addbananas-10000" onclick="cheats.addBananas(10000)">+10000 Bananas</button>
+          <button id="cheats-resetupgrades" onclick="cheats.resetUpgrades(); this.innerHTML = 'Reload to finish'">Reset Upgrades</button><br>
+          <button id="cheats-infinite" onclick="cheats.infinite()">Infinite Bananas</button>
+          <button id="cheats-multiply-10" onclick="cheats.multiplyby(10)">x10 Bananas</button>
+          <button id="cheats-resetbananas" onclick="cheats.clearBananas()">Reset Bananas</button><br>
+        </div>
         <br><br>
         <a href="wipe.html" style="color: #0000EE;">Wipe your save</a>
       </dialog>
@@ -113,6 +123,15 @@
     <br>
     <h2>Items</h2>
     <div id="shopcontent"x>
+      <div class="shopcard" id="shop_template" style="display: none;">
+        <hr>
+        <img class="shopicon">
+        <p class="shopcardprice">Price</p>
+        <label class="itemlabel">Template</label><span class="shopcardamount"> x0</span>
+        <h4 class="shopcard-info">A template.</h4>
+        <p class="shopcard-yield">+0 Bananas per click</p>
+        <hr>
+      </div>
       <div class="shopcard" id="shop_bananacrate" onclick="purchase('bananacrate')">
         <hr>
         <img src="assets/bananacrate.png" class="shopicon">
