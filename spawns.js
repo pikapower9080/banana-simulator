@@ -18,7 +18,7 @@ shinies.plantain = {
     weight: 3,
     lifetime: 15
 }
-var shinylist = [shinies.goldenbanana, shinies.plantain]
+var shinylist = [shinies.goldenbanana, shinies.plantain, shinies.goldenbanana, shinies.goldenbanana, shinies.goldenbanana]
 
 function weightarray(arr){
     return [].concat(...arr.map((obj) => Array(Math.ceil(obj.weight * 100)).fill(obj))); 
@@ -72,13 +72,13 @@ function shinyclick(shinyelement){
         }, 1500);
     } else if(shinytype == "plantain") {
         var yieldtotake = calcbpc() * 25
-        if (yieldtotake < 1) {
-            yieldtotake = 0
-        }
         shinytext.innerHTML = shinytext.innerHTML.replace("%bananas%", commas(String(yieldtotake)))
         shinytext.innerHTML = shinytext.innerHTML.replace("%op%", "-")
         shinytext.innerHTML = shinytext.innerHTML.replace("%type%", "Plantain!")
         points = parseInt(points) - parseInt(yieldtotake)
+        if (points > 0) {
+            points = 0
+        }
         setTimeout(() => {
             shinyelement.remove()
             shinydb = false
