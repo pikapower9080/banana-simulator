@@ -132,9 +132,6 @@ dialog {
 .shakeanim:hover{
   animation: vibrate-1 0.3s linear infinite both;
 }
-#changelog label:hover{
-	animation: jello-horizontal 0.9s 0.5s infinite both;
-}
 button{
   background-color:rgb(218, 204, 204);
   border-color: rgb(218, 204, 204); 

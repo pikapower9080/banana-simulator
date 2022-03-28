@@ -4,7 +4,7 @@
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
 
-const version = "0.5.5"
+const version = "0.5.6"
 
 var points = 0
 let bpc = 1
@@ -108,6 +108,9 @@ function resetusername() {
 function updatecount() {
   document.getElementById("count").innerHTML = `Bananas: ${commas(points)}`
   bpc = calcbpc()
+  if (parseInt(points) < 0) {
+    points = 0
+  }
   document.getElementById("bpscount").innerHTML = `+${commas(bpc)} per click` // Fun fact: It used to be called bps for bananas per second!
   document.getElementById("yourname").innerHTML = username + "'s Banana " + getstandlevel() 
   setCookie("save", points, 30)
@@ -298,4 +301,4 @@ function onupdate(){
 onupdate()
 setInterval(() => {
   updatecount()
-}, 1000);
+}, 100);
