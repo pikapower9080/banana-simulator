@@ -4,7 +4,7 @@
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
 
-const version = "0.5.6"
+const version = "0.5.7"
 
 var points = 0
 let bpc = 1
@@ -86,6 +86,42 @@ function calcbpc(){
   return newbpc
 }
 
+// I copied this from cookie clicker, litterally (thanks!!!)
+function rawFormatter(val){return Math.round(val*1000)/1000;}
+
+var formatLong=[' thousand',' million',' billion',' trillion',' quadrillion',' quintillion',' sextillion',' septillion',' octillion',' nonillion'];
+var prefixes=['','un','duo','tre','quattuor','quin','sex','septen','octo','novem'];
+var suffixes=['decillion','vigintillion','trigintillion','quadragintillion','quinquagintillion','sexagintillion','septuagintillion','octogintillion','nonagintillion'];
+for (var i in suffixes)
+{
+	for (var ii in prefixes)
+	{
+		formatLong.push(' '+prefixes[ii]+suffixes[i]);
+	}
+}
+
+function formatEveryThirdPower(notations)
+{
+	return function (val)
+	{
+		var base=0,notationValue='';
+		if (!isFinite(val)) return 'Infinity';
+		if (val>1000000)
+		{
+			val/=1000;
+			while(Math.round(val)>=1000)
+			{
+				val/=1000;
+				base++;
+			}
+			if (base>=notations.length) {return 'Infinity';} else {notationValue=notations[base];}
+		}
+		return (Math.round(val*1000)/1000)+notationValue;
+	};
+}
+
+// End Copy and Pasted zone
+
 // I wanted to store bananas in localstorage and not cookies and so i just changed these functions because i was too lazy to update all the code.
 function setCookie(cname, cvalue, exdays) {
   localStorage.setItem(cname, cvalue)
@@ -98,15 +134,21 @@ if (getCookie("save") == null) {
 } else {
   points = getCookie("save")
 }
+// I made it so the commas function returns a shortened value so I didn't have to update all my code
 function commas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Insert commas to a number
+  // var cstring = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  if (parseInt(x) <= 1000000){
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  } else {
+    return formatEveryThirdPower(formatLong)(x)
+  }
 }
 function resetusername() {
   username = makeUsername()
   localStorage.setItem("username", username)
 }
 function updatecount() {
-  document.getElementById("count").innerHTML = `Bananas: ${commas(points)}`
+  document.getElementById("count").innerHTML = `Bananas: ${commas(formatEveryThirdPower(formatLong)(points))}`
   bpc = calcbpc()
   if (parseInt(points) < 0) {
     points = 0
