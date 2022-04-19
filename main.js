@@ -4,7 +4,7 @@
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
 
-const version = "0.5.7"
+const version = "0.5.8"
 
 var points = 0
 let bpc = 1
@@ -333,6 +333,12 @@ cheats.clearBananas = function(){
   points = 0
   updatecount()
 }
+
+document.addEventListener("contextmenu", function(event){
+  if (!document.getElementById("allowrightclicks").checked){
+    event.preventDefault()
+  }
+})
 
 function onupdate(){
   updatepricetags()

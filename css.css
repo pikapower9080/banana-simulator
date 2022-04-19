@@ -8,19 +8,15 @@
   color: black;
 }
 body{
-  /* background-image: url("assets/banana_large.png");
-  background-color: yellow;
-  background-size: 100px; */
   background:
-        /* top, transparent black, faked with gradient */ 
         linear-gradient(
           rgba(0, 0, 0, 0.6), 
           rgba(0, 0, 0, 0.6)
         ),
-        /* bottom, image */
         url("assets/background.png");
   background-color: yellow;
   background-size: 200px;
+  margin-right: 20%;
 }
 .bigbanana{
   position: relative;
@@ -39,6 +35,14 @@ body{
   text-align: center;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 32px;
+}
+#bananacount::after{
+  content: url("assets/banana.png");
+  margin: 10px;
+}
+#bananacount::before{
+  content: url("assets/banana.png");
+  margin: 10px;
 }
 #bpscount{
   color:white;
@@ -61,6 +65,9 @@ body{
   background: rgb(36,36,36);
   background: radial-gradient(circle, rgba(36,36,36,1) 0%, rgba(13,13,13,1) 100%);
   overflow-y: scroll;
+}
+#shop *{
+  user-select: var(--user-select-rule);
 }
 #shop h1, h2, h3{
   color:white;
@@ -110,6 +117,12 @@ body{
 #yourname{
   font-family: 'Press Start 2P', sans-serif;
 }
+#yourname, #bananacount, #bpscount {
+  transform: translateX(20%);
+  padding-right: 20%;
+  user-select: var(--user-select-rule);
+  
+}
 dialog {
   border-style: solid;
   border-width: 1px;
@@ -158,6 +171,7 @@ button{
   bottom: 0;
   left: 0;
   padding: 5px 5px 5px 5px;
+  user-select: var(--user-select-rule);
 }
 .settingsicon{
   width: 15px;
@@ -165,6 +179,7 @@ button{
   bottom: 0;
   left: 20px;
   padding: 5px 5px 5px 5px;
+  user-select: var(--user-select-rule);
 }
 .shiny{
   position: fixed;
@@ -177,4 +192,37 @@ button{
   padding: 5px 5px 5px 5px;
   border-radius: 6px;
   position: absolute;
+}
+#screen-warning{
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  text-align: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: yellow;
+}
+#screen-warning h2{
+  color: black;
+}
+a{
+  color: rgb(61, 108, 225);
+}
+a:visited{
+  color: rgb(52, 95, 225);
+}
+a:focus{
+  color: rgb(46, 89, 215);
+}
+@media(max-width: 500px){
+  #screen-warning{
+    display: block;
+  }
+}
+@media(max-height: 400px){
+  #screen-warning{
+    display: block;
+  }
 }
