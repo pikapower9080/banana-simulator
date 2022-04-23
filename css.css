@@ -2,6 +2,10 @@
 
 :root{
   --user-select-rule: none;
+  --shop-right-padding: 20%;
+  --shop-right-padding-transform: translateX(10%);
+  --bigbanana-transform: translate(-100%, -50%);
+  --bigbanana-transform-scale: translate(-100%, -50%) scale(1.1);
 }
 *::selection{
   background-color: rgb(225, 242, 68);
@@ -16,14 +20,14 @@ body{
         url("assets/background.png");
   background-color: yellow;
   background-size: 200px;
-  margin-right: 20%;
+  margin-right: var(--shop-right-padding);
 }
 .bigbanana{
   position: relative;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: var(--bigbanana-transform);
   animation: scale-down-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000 ) both;
   user-select: var(--user-select-rule);
 }
@@ -57,7 +61,7 @@ body{
   top: 95%;
 }
 #shop{
-  width:20%;
+  width: var(--shop-right-padding);
   height: 100vh;
   position: absolute;
   top: 0;
@@ -118,8 +122,8 @@ body{
   font-family: 'Press Start 2P', sans-serif;
 }
 #yourname, #bananacount, #bpscount {
-  transform: translateX(20%);
-  padding-right: 20%;
+  transform: var(--shop-right-padding-transform);
+  padding-right: var(--shop-right-padding);
   user-select: var(--user-select-rule);
   
 }
@@ -206,6 +210,25 @@ button{
 }
 #screen-warning h2{
   color: black;
+}
+#shoptoggle{
+  position: absolute;
+  right: 0;
+  margin-right: var(--shop-right-padding);
+  color: white;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18.5px;
+  user-select: none;
+  cursor: pointer;
+  padding: 3px;
+  top: 0;
+  background-color: rgb(16, 16, 16);
+  border: 1px solid white;
+  border-right: none;
+  border-top: none;
 }
 a{
   color: rgb(61, 108, 225);

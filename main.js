@@ -4,7 +4,7 @@
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
 
-const version = "0.5.8"
+const version = "0.5.9"
 
 var points = 0
 let bpc = 1
@@ -333,6 +333,28 @@ cheats.clearBananas = function(){
   points = 0
   updatecount()
 }
+
+var shopToggle = true
+var shopToggleBtn = document.getElementById("shoptoggle")
+shopToggleBtn.addEventListener("click", function(){
+  if (!shopToggle) {
+    shopToggle = true
+    document.getElementById("shop").style.display = "unset"
+    document.body.style.setProperty("--shop-right-padding", "20%")
+    document.body.style.setProperty("--shop-right-padding-transform", "translateX(10%)")
+    document.body.style.setProperty("--bigbanana-transform", "translate(-100%, -50%)")
+    document.body.style.setProperty("--bigbanana-transform-scale", "translate(-100%, -50%) scale(1.1)")
+    shopToggleBtn.innerText = ">"
+  } else {
+    shopToggle = false
+    document.getElementById("shop").style.display = "none"
+    document.body.style.setProperty("--shop-right-padding", "0px")
+    document.body.style.setProperty("--shop-right-padding-transform", "0px")
+    document.body.style.setProperty("--bigbanana-transform", "translate(-50%, -50%)")
+    document.body.style.setProperty("--bigbanana-transform-scale", "translate(-50%, -50%) scale(1.1)")
+    shopToggleBtn.innerText = "<"
+  }
+})
 
 document.addEventListener("contextmenu", function(event){
   if (!document.getElementById("allowrightclicks").checked){
