@@ -4,7 +4,7 @@
   By the way I had trouble saving arrays or json or whatever in localstorage so there's a key for every single upgrade :(
 */
 
-const version = "0.5.9"
+const version = "0.6.0"
 
 var points = 0
 let bpc = 1
@@ -190,7 +190,7 @@ function updatebulidingcounts() {
   document.getElementById('yield_bananacrate').innerHTML = `+${yield_bananacrate} Banana(s) per click`
   document.getElementById('yield_bananatree').innerHTML = `+${yield_bananatree} Bananas per click`
   document.getElementById('yield_monkey').innerHTML = `+${yield_monkey} Bananas per click`
-  document.getElementById('yield_magikgrow').innerHTML = `+${yield_monkey} Bananas per click`
+  document.getElementById('yield_magikgrow').innerHTML = `+${yield_magikgrow} Bananas per click`
   document.getElementById('yield_forest').innerHTML = `+${yield_forest} Bananas per click`
   document.getElementById('yield_machine').innerHTML = `+${yield_machine} Bananas per click`
   document.getElementById('yield_box').innerHTML = `+${yield_machine} Bananas per click`

@@ -125,7 +125,6 @@ body{
   transform: var(--shop-right-padding-transform);
   padding-right: var(--shop-right-padding);
   user-select: var(--user-select-rule);
-  
 }
 dialog {
   border-style: solid;
